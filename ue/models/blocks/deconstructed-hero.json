@@ -1,0 +1,72 @@
+{
+  "definitions": [
+    {
+      "title": "Deconstructed Hero",
+      "id": "deconstructed-hero",
+      "model": "deconstructed-hero",
+      "filter": "deconstructed-hero",
+      "plugins": { "da": { "rows": 1, "columns": 1 } }
+    },
+    {
+      "title": "Deconstructed Hero Card",
+      "id": "deconstructed-hero-card",
+      "model": "deconstructed-hero-card",
+      "plugins": {
+        "da": {
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            { "name": "text", "selector": "div:nth-child(1)" },
+            { "name": "image", "selector": "div:nth-child(2) img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(2) img[alt]" }
+          ]
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "deconstructed-hero",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "text",
+          "label": "Hero Content",
+          "description": "Heading, subhead, and call-to-action link.",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "deconstructed-hero-card",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "text",
+          "label": "Card Content",
+          "description": "Tag, heading, and arrow link.",
+          "value": ""
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Background Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image Alt",
+          "multi": false
+        }
+      ]
+    }
+  ],
+  "filters": [
+    { "id": "deconstructed-hero", "components": ["deconstructed-hero-card"] }
+  ]
+}

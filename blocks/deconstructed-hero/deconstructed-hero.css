@@ -1,0 +1,184 @@
+/*
+ * Deconstructed Hero block
+ * Large hero panel on the left + stacked promo cards on the right.
+ * The navy palette is defined as block-local variables (the global tokens are
+ * the WKND green/orange system); structural tokens (spacing, radii, fonts) are
+ * reused from styles.css.
+ */
+
+.deconstructed-hero {
+  --dh-navy: #0a1b52;
+  --dh-navy-deep: #061238;
+  --dh-navy-card: #0d2166;
+  --dh-tag-bg: #1f4bd8;
+  --dh-text: #fff;
+  --dh-text-muted: rgb(255 255 255 / 78%);
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-md);
+}
+
+/* full-bleed: no section padding around this hero */
+main > .deconstructed-hero-container {
+  padding: 0;
+}
+
+.deconstructed-hero-container .deconstructed-hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+/* ===== Hero panel (left) ===== */
+.deconstructed-hero-panel {
+  display: flex;
+  align-items: center;
+  min-height: 420px;
+  padding: var(--gap-2xl) var(--gap-lg);
+  background: linear-gradient(135deg, var(--dh-navy) 0%, var(--dh-navy-deep) 100%);
+  color: var(--dh-text);
+}
+
+.deconstructed-hero-panel-content {
+  max-width: 620px;
+}
+
+.deconstructed-hero-panel-content h1,
+.deconstructed-hero-panel-content h2 {
+  margin: 0 0 var(--gap-lg);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(32px, 5vw, 54px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--dh-text);
+}
+
+.deconstructed-hero-panel-content p {
+  margin: 0 0 var(--gap-lg);
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.5;
+  color: var(--dh-text-muted);
+}
+
+/* CTA button — white pill with navy text */
+.deconstructed-hero-panel-content .button-container {
+  margin-top: var(--gap-2xl);
+}
+
+.deconstructed-hero-panel-content a.button {
+  display: inline-block;
+  margin-top: var(--gap-xl);
+  padding: 15px 28px;
+  border: 1px solid rgb(255 255 255 / 40%);
+  border-radius: var(--border-radius-sm);
+  background: var(--dh-text);
+  color: var(--dh-navy);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
+  letter-spacing: 0;
+  transition: var(--button-transition);
+}
+
+.deconstructed-hero-panel-content a.button:hover {
+  background: rgb(255 255 255 / 90%);
+  transform: translateY(-2px);
+}
+
+/* ===== Promo cards (right) ===== */
+.deconstructed-hero-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-md);
+}
+
+.deconstructed-hero-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 200px;
+  padding: var(--gap-xl);
+  overflow: hidden;
+  background: var(--dh-navy-card);
+  color: var(--dh-text);
+}
+
+/* card background image (media card) */
+.deconstructed-hero-card-image {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+}
+
+.deconstructed-hero-card-image picture,
+.deconstructed-hero-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.deconstructed-hero-card-body {
+  position: relative;
+  z-index: 1;
+}
+
+.deconstructed-hero-card-body .tag-pill {
+  margin-bottom: var(--gap-md);
+  background-color: var(--dh-tag-bg);
+  color: var(--dh-text);
+}
+
+.deconstructed-hero-card-body h2,
+.deconstructed-hero-card-body h3,
+.deconstructed-hero-card-body h4 {
+  margin: 0 0 var(--gap-lg);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--dh-text);
+}
+
+/* arrow link */
+.deconstructed-hero-card-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--dh-text);
+  font-size: 0;
+}
+
+.deconstructed-hero-card-link::after {
+  content: '→';
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* full-card clickable overlay */
+.deconstructed-hero-card-overlay {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+}
+
+.deconstructed-hero-card:hover .deconstructed-hero-card-link::after {
+  transform: translateX(4px);
+  transition: transform var(--transition-fast);
+}
+
+/* ===== Desktop: two regions side by side ===== */
+@media (width >= 900px) {
+  .deconstructed-hero {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .deconstructed-hero-panel {
+    min-height: 520px;
+    padding: var(--gap-3xl) var(--gap-3xl) var(--gap-3xl) 6vw;
+  }
+
+  .deconstructed-hero-cards {
+    min-height: 520px;
+  }
+}
