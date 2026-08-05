@@ -69,9 +69,9 @@ main > .deconstructed-hero-container {
 .deconstructed-hero-panel-content a.button {
   display: inline-block;
   margin-top: var(--gap-xl);
-  padding: 15px 28px;
+  padding: 15px 32px;
   border: 1px solid rgb(255 255 255 / 40%);
-  border-radius: var(--border-radius-sm);
+  border-radius: 9999px;   /* was var(--border-radius-sm) */
   background: var(--dh-text);
   color: var(--dh-navy);
   font-family: var(--body-font-family);
@@ -124,10 +124,20 @@ main > .deconstructed-hero-container {
   z-index: 1;
 }
 
-.deconstructed-hero-card-body .tag-pill {
+.deconstructed-hero .tag-pill {
+  display: inline-block;
+  align-self: flex-start;
+  width: fit-content;
   margin-bottom: var(--gap-md);
+  padding: 5px 12px 4px;
+  border-radius: 9999px;
   background-color: var(--dh-tag-bg);
   color: var(--dh-text);
+  font-family: var(--body-font-family);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .deconstructed-hero-card-body h2,
