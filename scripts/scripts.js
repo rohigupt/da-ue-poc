@@ -30,8 +30,11 @@ export const NX_ORIGIN = nxBranch === 'local' || nxOrigin.includes('localhost')
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('picture');
-  if (h1 && h1.closest('.block')) return; // ← add
-  if (picture && picture.closest('.block')) return; // ← add
+  // Don't auto-block if the h1/picture already belong to the hero-deconstructed
+  // block (it owns its own hero image + heading). Checked by block-name class,
+  // since the generic `.block` class isn't added until decorateBlocks() runs later.
+  if (h1 && h1.closest('.hero-deconstructed')) return;
+  if (picture && picture.closest('.hero-deconstructed')) return;
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
