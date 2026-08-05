@@ -1,18 +1,22 @@
 /*
  * Deconstructed Hero block
  * Large hero panel on the left + stacked promo cards on the right.
- * The navy palette is defined as block-local variables (the global tokens are
- * the WKND green/orange system); structural tokens (spacing, radii, fonts) are
- * reused from styles.css.
+ * Styling matches broadridge.com's "hero-deconstructed" section:
+ * values (colors, fonts, radii) were extracted from the live site's computed
+ * styles. Defined as block-local variables since the global tokens are the
+ * WKND green/orange system.
  */
 
 .deconstructed-hero {
   --dh-navy: #0a1b52;
-  --dh-navy-deep: #061238;
-  --dh-navy-card: #0d2166;
-  --dh-tag-bg: #1f4bd8;
+  --dh-navy-deep: #001f5a;
+  --dh-navy-card: #001f5a;
+  --dh-cta-text: #2662fc;
   --dh-text: #fff;
   --dh-text-muted: rgb(255 255 255 / 78%);
+
+  /* Broadridge uses freight-sans-pro (Adobe Fonts); falls back to system sans */
+  --dh-font: freight-sans-pro, var(--body-font-family, sans-serif);
 
   display: grid;
   grid-template-columns: 1fr;
@@ -46,22 +50,23 @@ main > .deconstructed-hero-container {
 .deconstructed-hero-panel-content h1,
 .deconstructed-hero-panel-content h2 {
   margin: 0 0 var(--gap-lg);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(32px, 5vw, 54px);
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
+  font-family: var(--dh-font);
+  font-size: clamp(48px, 9vw, 128px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: normal;
   color: var(--dh-text);
 }
 
 .deconstructed-hero-panel-content p {
   margin: 0 0 var(--gap-lg);
-  font-size: clamp(16px, 2vw, 20px);
-  line-height: 1.5;
-  color: var(--dh-text-muted);
+  font-family: var(--dh-font);
+  font-size: clamp(20px, 3vw, 36px);
+  line-height: 1.1;
+  color: var(--dh-text);
 }
 
-/* CTA button — white pill with navy text */
+/* CTA button — white, near-square (2px radius), blue label */
 .deconstructed-hero-panel-content .button-container {
   margin-top: var(--gap-2xl);
 }
@@ -69,21 +74,20 @@ main > .deconstructed-hero-container {
 .deconstructed-hero-panel-content a.button {
   display: inline-block;
   margin-top: var(--gap-xl);
-  padding: 15px 32px;
-  border: 1px solid rgb(255 255 255 / 40%);
-  border-radius: 9999px;   /* was var(--border-radius-sm) */
+  padding: 16px 24px;
+  border: 0;
+  border-radius: 2px;
   background: var(--dh-text);
-  color: var(--dh-navy);
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m);
-  font-weight: 500;
+  color: var(--dh-cta-text);
+  font-family: var(--dh-font);
+  font-size: 20px;
+  font-weight: 600;
   letter-spacing: 0;
   transition: var(--button-transition);
 }
 
 .deconstructed-hero-panel-content a.button:hover {
   background: rgb(255 255 255 / 90%);
-  transform: translateY(-2px);
 }
 
 /* ===== Promo cards (right) ===== */
@@ -101,6 +105,7 @@ main > .deconstructed-hero-container {
   min-height: 200px;
   padding: var(--gap-xl);
   overflow: hidden;
+  border-radius: 4px;
   background: var(--dh-navy-card);
   color: var(--dh-text);
 }
@@ -124,17 +129,13 @@ main > .deconstructed-hero-container {
   z-index: 1;
 }
 
+/* Eyebrow tag — plain uppercase label (matches live site: no pill background) */
 .deconstructed-hero .tag-pill {
-  display: inline-block;
-  align-self: flex-start;
-  width: fit-content;
-  margin-bottom: var(--gap-md);
-  padding: 5px 12px 4px;
-  border-radius: 9999px;
-  background-color: var(--dh-tag-bg);
+  display: block;
+  margin-bottom: var(--gap-sm, 8px);
   color: var(--dh-text);
-  font-family: var(--body-font-family);
-  font-size: 12px;
+  font-family: var(--dh-font);
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -144,9 +145,9 @@ main > .deconstructed-hero-container {
 .deconstructed-hero-card-body h3,
 .deconstructed-hero-card-body h4 {
   margin: 0 0 var(--gap-lg);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(20px, 2.5vw, 26px);
-  font-weight: 400;
+  font-family: var(--dh-font);
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 700;
   line-height: 1.2;
   color: var(--dh-text);
 }
