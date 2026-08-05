@@ -207,6 +207,26 @@
           }
         },
         {
+          "title": "Fragment",
+          "id": "fragment",
+          "model": "fragment",
+          "plugins": {
+            "da": {
+              "unsafeHTML": "<div class=\"fragment\"><div><div><p><a href=\"\">Fragment URL</a></p></div></div></div>",
+              "fields": [
+                {
+                  "name": "url",
+                  "selector": "div>div>p>a[href]"
+                },
+                {
+                  "name": "urlText",
+                  "selector": "div>div>p>a"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Hero Deconstructed",
           "id": "hero-deconstructed",
           "model": "hero-deconstructed",
@@ -262,26 +282,6 @@
                 {
                   "name": "link",
                   "selector": "div:nth-child(2) a"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "title": "Fragment",
-          "id": "fragment",
-          "model": "fragment",
-          "plugins": {
-            "da": {
-              "unsafeHTML": "<div class=\"fragment\"><div><div><p><a href=\"\">Fragment URL</a></p></div></div></div>",
-              "fields": [
-                {
-                  "name": "url",
-                  "selector": "div>div>p>a[href]"
-                },
-                {
-                  "name": "urlText",
-                  "selector": "div>div>p>a"
                 }
               ]
             }
