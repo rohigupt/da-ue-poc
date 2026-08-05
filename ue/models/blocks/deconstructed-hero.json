@@ -1,24 +1,62 @@
 {
   "definitions": [
     {
-      "title": "Deconstructed Hero",
-      "id": "deconstructed-hero",
-      "model": "deconstructed-hero",
-      "filter": "deconstructed-hero",
-      "plugins": { "da": { "rows": 1, "columns": 1 } }
-    },
-    {
-      "title": "Deconstructed Hero Card",
-      "id": "deconstructed-hero-card",
-      "model": "deconstructed-hero-card",
+      "title": "Hero Deconstructed",
+      "id": "hero-deconstructed",
+      "model": "hero-deconstructed",
+      "filter": "hero-deconstructed",
       "plugins": {
         "da": {
+          "name": "hero-deconstructed",
           "rows": 1,
           "columns": 2,
           "fields": [
-            { "name": "text", "selector": "div:nth-child(1)" },
-            { "name": "image", "selector": "div:nth-child(2) img[src]" },
-            { "name": "imageAlt", "selector": "div:nth-child(2) img[alt]" }
+            {
+              "name": "image",
+              "selector": "div:nth-child(1) img"
+            },
+            {
+              "name": "heading",
+              "selector": "div:nth-child(2) h1"
+            },
+            {
+              "name": "text",
+              "selector": "div:nth-child(2) p:first-of-type"
+            },
+            {
+              "name": "cta",
+              "selector": "div:nth-child(2) a"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "title": "Hero Deconstructed Card",
+      "id": "hero-deconstructed-card",
+      "model": "hero-deconstructed-card",
+      "plugins": {
+        "da": {
+          "name": "hero-deconstructed-card",
+          "rows": 1,
+          "columns": 2,
+          "fields": [
+            {
+              "name": "image",
+              "selector": "div:nth-child(1) img"
+            },
+            {
+              "name": "badge",
+              "selector": "div:nth-child(2) strong"
+            },
+            {
+              "name": "heading",
+              "selector": "div:nth-child(2) h3"
+            },
+            {
+              "name": "link",
+              "selector": "div:nth-child(2) a"
+            }
           ]
         }
       }
@@ -26,47 +64,84 @@
   ],
   "models": [
     {
-      "id": "deconstructed-hero",
+      "id": "hero-deconstructed",
       "fields": [
-        {
-          "component": "richtext",
-          "valueType": "string",
-          "name": "text",
-          "label": "Hero Content",
-          "description": "Heading, subhead, and call-to-action link.",
-          "value": ""
-        }
-      ]
-    },
-    {
-      "id": "deconstructed-hero-card",
-      "fields": [
-        {
-          "component": "richtext",
-          "valueType": "string",
-          "name": "text",
-          "label": "Card Content",
-          "description": "Tag, heading, and arrow link.",
-          "value": ""
-        },
         {
           "component": "reference",
           "valueType": "string",
           "name": "image",
-          "label": "Background Image",
+          "label": "Hero Image",
           "multi": false
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "imageAlt",
-          "label": "Image Alt",
+          "name": "heading",
+          "label": "Heading"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "text",
+          "label": "Supporting Text"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "cta",
+          "label": "CTA Link"
+        },
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Style",
+          "valueType": "string",
+          "options": [
+            {
+              "name": "Light",
+              "value": "light"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hero-deconstructed-card",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Card Image (optional)",
           "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "badge",
+          "label": "Badge Label"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "heading",
+          "label": "Heading"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "link",
+          "label": "Link"
         }
       ]
     }
   ],
   "filters": [
-    { "id": "deconstructed-hero", "components": ["deconstructed-hero-card"] }
+    {
+      "id": "hero-deconstructed",
+      "components": [
+        "hero-deconstructed-card"
+      ]
+    }
   ]
 }

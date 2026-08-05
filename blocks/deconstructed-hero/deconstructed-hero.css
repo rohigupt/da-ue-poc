@@ -1,195 +1,305 @@
 /*
- * Deconstructed Hero block
- * Large hero panel on the left + stacked promo cards on the right.
- * Styling matches broadridge.com's "hero-deconstructed" section:
- * values (colors, fonts, radii) were extracted from the live site's computed
- * styles. Defined as block-local variables since the global tokens are the
- * WKND green/orange system.
+ * Deconstructed hero: dark full-bleed hero card + a stack of 2 bento card
+ * tiles beside it. Matches broadridge.com's `section.hero-deconstructed`
+ * (article.card UNIFY hero + a.card side cards) — colors, type scale, CTA
+ * and spacing values are taken from that live component; typography for the
+ * main card reuses the exact clamp() values from hero.unify since it's the
+ * same hero.
  */
 
-.deconstructed-hero {
-  --dh-navy: #0a1b52;
-  --dh-navy-deep: #001f5a;
-  --dh-navy-card: #001f5a;
-  --dh-cta-text: #2662fc;
-  --dh-text: #fff;
-  --dh-text-muted: rgb(255 255 255 / 78%);
-
-  /* Broadridge uses freight-sans-pro (Adobe Fonts); falls back to system sans */
-  --dh-font: freight-sans-pro, var(--body-font-family, sans-serif);
-
+main .hero-deconstructed {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--gap-md);
+  gap: 8px;
+  box-sizing: border-box;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-/* full-bleed: no section padding around this hero */
-main > .deconstructed-hero-container {
-  padding: 0;
+main .hero-deconstructed + .hero-deconstructed {
+  margin-top: 32px;
 }
 
-.deconstructed-hero-container .deconstructed-hero-wrapper {
-  max-width: unset;
-  padding: 0;
+main .section:has(.hero-deconstructed) + .section:has(.hero-deconstructed) {
+  margin-top: 32px;
 }
 
-/* ===== Hero panel (left) ===== */
-.deconstructed-hero-panel {
-  display: flex;
-  align-items: center;
-  min-height: 420px;
-  padding: var(--gap-2xl) var(--gap-lg);
-  background: linear-gradient(135deg, var(--dh-navy) 0%, var(--dh-navy-deep) 100%);
-  color: var(--dh-text);
-}
-
-.deconstructed-hero-panel-content {
-  max-width: 620px;
-}
-
-.deconstructed-hero-panel-content h1,
-.deconstructed-hero-panel-content h2 {
-  margin: 0 0 var(--gap-lg);
-  font-family: var(--dh-font);
-  font-size: clamp(48px, 9vw, 128px);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: normal;
-  color: var(--dh-text);
-}
-
-.deconstructed-hero-panel-content p {
-  margin: 0 0 var(--gap-lg);
-  font-family: var(--dh-font);
-  font-size: clamp(20px, 3vw, 36px);
-  line-height: 1.1;
-  color: var(--dh-text);
-}
-
-/* CTA button — white, near-square (2px radius), blue label */
-.deconstructed-hero-panel-content .button-container {
-  margin-top: var(--gap-2xl);
-}
-
-.deconstructed-hero-panel-content a.button {
-  display: inline-block;
-  margin-top: var(--gap-xl);
-  padding: 16px 24px;
-  border: 0;
-  border-radius: 2px;
-  background: var(--dh-text);
-  color: var(--dh-cta-text);
-  font-family: var(--dh-font);
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 0;
-  transition: var(--button-transition);
-}
-
-.deconstructed-hero-panel-content a.button:hover {
-  background: rgb(255 255 255 / 90%);
-}
-
-/* ===== Promo cards (right) ===== */
-.deconstructed-hero-cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--gap-md);
-}
-
-.deconstructed-hero-card {
+/* ---------------------------------------------------------------- main hero */
+main .hero-deconstructed-main {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-height: 200px;
-  padding: var(--gap-xl);
+  display: grid;
   overflow: hidden;
+  min-height: 380px;
   border-radius: 4px;
-  background: var(--dh-navy-card);
-  color: var(--dh-text);
+  background-color: #001f5a;
+  color: #fff;
 }
 
-/* card background image (media card) */
-.deconstructed-hero-card-image {
+main .hero-deconstructed-main > * {
+  grid-area: 1 / 1;
+  margin: 0;
+}
+
+main .hero-deconstructed-image,
+main .hero-deconstructed-image picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+main .hero-deconstructed-image picture {
   position: absolute;
-  z-index: 0;
   inset: 0;
 }
 
-.deconstructed-hero-card-image picture,
-.deconstructed-hero-card-image img {
+main .hero-deconstructed-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+main .hero-deconstructed-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+main .hero-deconstructed-content h1 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: clamp(32px, 8vw, 56px);
+  line-height: 1.15;
+}
+
+main .hero-deconstructed-content p {
+  max-width: none;
+  margin: 0;
+  color: #bad1f5;
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  font-size: clamp(16px, 3vw, 22px);
+  line-height: 1.3;
+}
+
+main .hero-deconstructed-content p:last-child {
+  margin: 0;
+  margin-top: auto;
+  line-height: 0;
+}
+
+main .hero-deconstructed-content a:any-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 0;
+  padding: 16px 24px;
+  border: 0;
+  border-radius: 2px;
+  background: #fff;
+  color: var(--brand-blue);
+  font-family: var(--body-font-family);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+main .hero-deconstructed-content a:hover {
+  background: var(--brand-blue);
+  color: #fff;
+}
+
+main .hero-deconstructed-main.no-image {
+  min-height: auto;
+}
+
+/* ---------------------------------------------------------------- cards */
+main .hero-deconstructed-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #001f5a;
+  color: #fff;
+}
+
+main .hero-deconstructed-card-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 0;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+main .hero-deconstructed-card-body p:first-child {
+  margin: 0;
+  align-self: baseline;
+  line-height: 0;
+}
+
+main .hero-deconstructed-card-body p:first-child strong {
+  display: inline-block;
+  background-color: #0f3db5;
+  color: #fff;
+  border-radius: 2px;
+  padding: 2px 6px;
+  font-size: 14px;
+  font-weight: 350;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+main .hero-deconstructed-card-body h3 {
+  margin: 8px 0 0;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 350;
+  line-height: 28px;
+}
+
+main .hero-deconstructed-card-body p:last-child {
+  margin: 32px 0 0;
+  line-height: 0;
+}
+
+main .hero-deconstructed-card-body p:last-child a {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  color: #fff;
+  text-decoration: none;
+  text-indent: 100%;
+  white-space: nowrap;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5805 11.0058L12.2904 6.71885C11.8904 6.31915 11.8904 5.68961 12.2894 5.2999C12.6794 4.9002 13.3094 4.9002 13.7094 5.2989L19.7094 11.2945C19.9603 11.5388 20.0498 11.8907 19.9778 12.2144C19.9264 12.453 19.789 12.6607 19.6 12.8032L13.6995 18.6992C13.5095 18.8791 13.2495 18.989 12.9895 18.989L12.9995 19C12.7295 19 12.4695 18.8901 12.2895 18.7102C11.8895 18.3205 11.8895 17.681 12.2795 17.2913V17.2813L16.5596 13.0043H5C4.44 13.0043 4 12.5547 4 12.0051C4 11.4455 4.44 11.0058 5 11.0058H16.5805Z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center left;
+  transition: transform 0.3s cubic-bezier(0.05, 0.7, 0.1, 1);
+}
+
+main .hero-deconstructed-card:hover .hero-deconstructed-card-body p:last-child a {
+  transform: translateX(12px);
+}
+
+/* image-backed card: side cards don't carry a real content image by
+   default (Figma's bento card is a plain dark tile), so this is an
+   extension for authors who add one — the image fills the tile and the
+   body bottom-aligns over it, matching the Figma "justify-end" treatment. */
+main .hero-deconstructed-card-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  line-height: 0;
+}
+
+main .hero-deconstructed-card-image picture,
+main .hero-deconstructed-card-image img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.deconstructed-hero-card-body {
-  position: relative;
-  z-index: 1;
+/* ============================================================ light variant */
+main .hero-deconstructed.light .hero-deconstructed-main {
+  background-color: #e8f1fc;
+  color: #000c36;
 }
 
-/* Eyebrow tag — plain uppercase label (matches live site: no pill background) */
-.deconstructed-hero .tag-pill {
-  display: block;
-  margin-bottom: var(--gap-sm, 8px);
-  color: var(--dh-text);
-  font-family: var(--dh-font);
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+main .hero-deconstructed.light .hero-deconstructed-card {
+  background-color: #bad1f5;
+  color: #000c36;
 }
 
-.deconstructed-hero-card-body h2,
-.deconstructed-hero-card-body h3,
-.deconstructed-hero-card-body h4 {
-  margin: 0 0 var(--gap-lg);
-  font-family: var(--dh-font);
-  font-size: clamp(20px, 2.5vw, 28px);
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--dh-text);
+main .hero-deconstructed.light .hero-deconstructed-content h1,
+main .hero-deconstructed.light .hero-deconstructed-content p,
+main .hero-deconstructed.light .hero-deconstructed-card-body h3 {
+  color: #000c36;
 }
 
-/* arrow link */
-.deconstructed-hero-card-link {
-  display: inline-flex;
-  align-items: center;
-  color: var(--dh-text);
-  font-size: 0;
+main .hero-deconstructed.light .hero-deconstructed-content a:any-link {
+  background: var(--brand-blue);
+  color: #fff;
 }
 
-.deconstructed-hero-card-link::after {
-  content: '→';
-  font-size: 24px;
-  line-height: 1;
+main .hero-deconstructed.light .hero-deconstructed-content a:hover {
+  background: #000c36;
+  color: #fff;
 }
 
-/* full-card clickable overlay */
-.deconstructed-hero-card-overlay {
-  position: absolute;
-  z-index: 2;
-  inset: 0;
+main .hero-deconstructed.light .hero-deconstructed-card-body p:last-child a {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23000c36"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5805 11.0058L12.2904 6.71885C11.8904 6.31915 11.8904 5.68961 12.2894 5.2999C12.6794 4.9002 13.3094 4.9002 13.7094 5.2989L19.7094 11.2945C19.9603 11.5388 20.0498 11.8907 19.9778 12.2144C19.9264 12.453 19.789 12.6607 19.6 12.8032L13.6995 18.6992C13.5095 18.8791 13.2495 18.989 12.9895 18.989L12.9995 19C12.7295 19 12.4695 18.8901 12.2895 18.7102C11.8895 18.3205 11.8895 17.681 12.2795 17.2913V17.2813L16.5596 13.0043H5C4.44 13.0043 4 12.5547 4 12.0051C4 11.4455 4.44 11.0058 5 11.0058H16.5805Z"/></svg>');
 }
 
-.deconstructed-hero-card:hover .deconstructed-hero-card-link::after {
-  transform: translateX(4px);
-  transition: transform var(--transition-fast);
+main .hero-deconstructed.light .hero-deconstructed-image img {
+  object-fit: contain;
+  object-position: right center;
 }
 
-/* ===== Desktop: two regions side by side ===== */
+
 @media (width >= 900px) {
-  .deconstructed-hero {
-    grid-template-columns: 2fr 1fr;
+  /* Figma: fixed 421px side column, flexible main hero, 16px gutters; the
+     first side card sizes to its content, the second fills the remainder. */
+  main .hero-deconstructed {
+    grid-template: "main two" minmax(0, 0.585fr) "main three" minmax(0, 1fr) / minmax(0, 2.083fr) minmax(0, 1fr);
+    gap: 16px;
+    height: 530px;
   }
 
-  .deconstructed-hero-panel {
-    min-height: 520px;
-    padding: var(--gap-3xl) var(--gap-3xl) var(--gap-3xl) 6vw;
+  main .hero-deconstructed-main {
+    grid-area: main;
+    min-height: 0;
   }
 
-  .deconstructed-hero-cards {
-    min-height: 520px;
+  main .hero-deconstructed-main .hero-deconstructed-content {
+    padding: 64px;
+  }
+
+  main .hero-deconstructed-main + .hero-deconstructed-card {
+    grid-area: two;
+  }
+
+  main .hero-deconstructed-main + .hero-deconstructed-card + .hero-deconstructed-card {
+    grid-area: three;
+  }
+
+  /* The taller feature card bottom-aligns its content over the decorative
+     background image, matching the source INSIGHTS card. */
+  main .hero-deconstructed-card.feature .hero-deconstructed-card-body {
+    justify-content: flex-end;
+  }
+
+  main .hero-deconstructed.light {
+    grid-template: none / minmax(0, 2.083fr) minmax(0, 1fr);
+    height: auto;
+    align-items: start;
+  }
+
+  main .hero-deconstructed.light .hero-deconstructed-main {
+    grid-area: auto;
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    min-height: 530px;
+    height: 100%;
+  }
+
+  main .hero-deconstructed.light .hero-deconstructed-card {
+    grid-column: 2;
+    grid-area: auto;
   }
 }

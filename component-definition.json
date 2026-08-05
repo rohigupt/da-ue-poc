@@ -207,37 +207,61 @@
           }
         },
         {
-          "title": "Deconstructed Hero",
-          "id": "deconstructed-hero",
-          "model": "deconstructed-hero",
-          "filter": "deconstructed-hero",
+          "title": "Hero Deconstructed",
+          "id": "hero-deconstructed",
+          "model": "hero-deconstructed",
+          "filter": "hero-deconstructed",
           "plugins": {
             "da": {
-              "rows": 1,
-              "columns": 1
-            }
-          }
-        },
-        {
-          "title": "Deconstructed Hero Card",
-          "id": "deconstructed-hero-card",
-          "model": "deconstructed-hero-card",
-          "plugins": {
-            "da": {
+              "name": "hero-deconstructed",
               "rows": 1,
               "columns": 2,
               "fields": [
                 {
-                  "name": "text",
-                  "selector": "div:nth-child(1)"
+                  "name": "image",
+                  "selector": "div:nth-child(1) img"
                 },
+                {
+                  "name": "heading",
+                  "selector": "div:nth-child(2) h1"
+                },
+                {
+                  "name": "text",
+                  "selector": "div:nth-child(2) p:first-of-type"
+                },
+                {
+                  "name": "cta",
+                  "selector": "div:nth-child(2) a"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Hero Deconstructed Card",
+          "id": "hero-deconstructed-card",
+          "model": "hero-deconstructed-card",
+          "plugins": {
+            "da": {
+              "name": "hero-deconstructed-card",
+              "rows": 1,
+              "columns": 2,
+              "fields": [
                 {
                   "name": "image",
-                  "selector": "div:nth-child(2) img[src]"
+                  "selector": "div:nth-child(1) img"
                 },
                 {
-                  "name": "imageAlt",
-                  "selector": "div:nth-child(2) img[alt]"
+                  "name": "badge",
+                  "selector": "div:nth-child(2) strong"
+                },
+                {
+                  "name": "heading",
+                  "selector": "div:nth-child(2) h3"
+                },
+                {
+                  "name": "link",
+                  "selector": "div:nth-child(2) a"
                 }
               ]
             }

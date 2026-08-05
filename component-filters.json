@@ -63,9 +63,9 @@
     ]
   },
   {
-    "id": "deconstructed-hero",
+    "id": "hero-deconstructed",
     "components": [
-      "deconstructed-hero-card"
+      "hero-deconstructed-card"
     ]
   },
   {
