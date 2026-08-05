@@ -192,6 +192,16 @@ main .hero-deconstructed-card-body p:last-child a {
   transition: transform 0.3s cubic-bezier(0.05, 0.7, 0.1, 1);
 }
 
+main .hero-deconstructed.light .hero-deconstructed-content a:any-link {
+  background: var(--brand-blue);
+  color: #fff;
+}
+
+main .hero-deconstructed.light .hero-deconstructed-content a:hover {
+  background: #000c36;
+  color: #fff;
+}
+
 main .hero-deconstructed-card:hover .hero-deconstructed-card-body p:last-child a {
   transform: translateX(12px);
 }
@@ -230,16 +240,6 @@ main .hero-deconstructed.light .hero-deconstructed-content h1,
 main .hero-deconstructed.light .hero-deconstructed-content p,
 main .hero-deconstructed.light .hero-deconstructed-card-body h3 {
   color: #000c36;
-}
-
-main .hero-deconstructed.light .hero-deconstructed-content a:any-link {
-  background: var(--brand-blue);
-  color: #fff;
-}
-
-main .hero-deconstructed.light .hero-deconstructed-content a:hover {
-  background: #000c36;
-  color: #fff;
 }
 
 main .hero-deconstructed.light .hero-deconstructed-card-body p:last-child a {
