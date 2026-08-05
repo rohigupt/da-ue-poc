@@ -17,6 +17,12 @@ import {
   toCamelCase,
 } from './aem.js';
 
+const { searchParams: nxSearchParams, origin: nxOrigin } = new URL(window.location.href);
+const nxBranch = nxSearchParams.get('nx') || 'main';
+export const NX_ORIGIN = nxBranch === 'local' || nxOrigin.includes('localhost')
+  ? 'http://localhost:6456/nx'
+  : 'https://da.live/nx';
+
 /**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
@@ -227,6 +233,5 @@ loadPage();
   if (lp) import('https://da.live/scripts/dapreview.js').then((mod) => mod.default(loadPage));
 
   const exp = searchParams.get('daexperiment');
-  // eslint-disable-next-line import/no-unresolved
-  if (exp) import('https://da.live/nx/public/plugins/exp/exp.js');
+  if (exp) import(`${NX_ORIGIN}/public/plugins/exp/exp.js`);
 }());

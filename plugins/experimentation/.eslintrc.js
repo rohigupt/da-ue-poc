@@ -18,4 +18,13 @@ module.exports = {
       js: 'always',
     }],
   },
+  overrides: [
+    {
+      // airbnb-base's devDependencies globs don't match nested test dirs like this one
+      files: ['tests/**/*.js'],
+      rules: {
+        'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+      },
+    },
+  ],
 };
