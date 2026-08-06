@@ -1,4 +1,5 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../ue/scripts/ue-utils.js';
 
 export default function decorate(block) {
   const rows = [...block.children];
@@ -25,9 +26,11 @@ export default function decorate(block) {
     });
   });
 
-  // replace images with optimized versions
+  // replace images with optimized versions, preserving Universal Editor
+  // instrumentation so edits aren't lost when the node is swapped out
   block.querySelectorAll('img').forEach((img) => {
     const optimized = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
+    moveInstrumentation(img, optimized.querySelector('img'));
     const target = img.closest('picture') || img;
     target.replaceWith(optimized);
   });
