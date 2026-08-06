@@ -25,16 +25,36 @@
   padding: 40px 24px;
   border-radius: var(--hero-deconstructed-radius);
   background-color: var(--hero-deconstructed-navy);
-  background-image:
-    linear-gradient(115deg, rgb(0 20 64 / 0%) 55%, rgb(20 51 122 / 55%) 100%),
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="104" viewBox="0 0 120 104"><g fill="none" stroke="%23244a9c" stroke-opacity="0.4" stroke-width="1"><path d="M30 0 L60 17 L60 52 L30 69 L0 52 L0 17 Z"/><path d="M90 0 L120 17 L120 52 L90 69 L60 52 L60 17 Z"/><path d="M60 52 L90 69 L90 104 L60 121 L30 104 L30 69 Z"/></g><g fill="%23244a9c" fill-opacity="0.5"><circle cx="60" cy="17" r="2"/><circle cx="30" cy="69" r="2"/><circle cx="90" cy="69" r="2"/></g></svg>');
-  background-size: cover, 240px 208px;
   overflow: hidden;
 }
 
-/* Target design uses a branded pattern panel, not the authored photo */
+/* Author-selected hero background image (full-bleed behind the content) */
 .hero-deconstructed .hero-deconstructed-main .hero-deconstructed-media {
-  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-deconstructed .hero-deconstructed-main .hero-deconstructed-media p {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-deconstructed .hero-deconstructed-main .hero-deconstructed-media img,
+.hero-deconstructed .hero-deconstructed-main .hero-deconstructed-media picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dark overlay so the white heading stays legible over any image */
+.hero-deconstructed .hero-deconstructed-main .hero-deconstructed-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(0 22 64 / 85%) 0%, rgb(0 22 64 / 55%) 100%);
 }
 
 .hero-deconstructed .hero-deconstructed-main .hero-deconstructed-content {
