@@ -21,6 +21,13 @@
   gap: 8px;
 }
 
+/* Padding must count inside the fixed cell heights (else 530h + 64 padding
+   renders 658 and the hero overflows past the cards on desktop) */
+.hero-deconstructed .hero-deconstructed-main,
+.hero-deconstructed .hero-deconstructed-feature {
+  box-sizing: border-box;
+}
+
 /* Main hero */
 .hero-deconstructed .hero-deconstructed-main {
   position: relative;
