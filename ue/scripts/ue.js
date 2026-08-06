@@ -14,7 +14,7 @@ import { showSlide } from '../../blocks/carousel/carousel.js';
 import { moveInstrumentation } from './ue-utils.js';
 
 const setupObservers = () => {
-  const mutatingBlocks = document.querySelectorAll('div.cards, div.carousel, div.accordion');
+  const mutatingBlocks = document.querySelectorAll('div.cards, div.carousel, div.accordion, div.hero-deconstructed');
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList' && mutation.target.tagName === 'DIV') {
@@ -22,7 +22,12 @@ const setupObservers = () => {
         const removedElements = mutation.removedNodes;
 
         // detect the mutation type of the block or picture (for cards)
-        const type = mutation.target.classList.contains('cards-card-image') ? 'cards-image' : mutation.target.attributes['data-aue-component']?.value;
+        let type = mutation.target.attributes['data-aue-component']?.value;
+        if (mutation.target.classList.contains('cards-card-image')) {
+          type = 'cards-image';
+        } else if (mutation.target.classList.contains('hero-deconstructed-media')) {
+          type = 'hero-deconstructed-image';
+        }
 
         switch (type) {
           case 'cards':
@@ -40,6 +45,20 @@ const setupObservers = () => {
           case 'cards-image':
             // handle card-image picture replacements
             if (mutation.target.classList.contains('cards-card-image')) {
+              const addedPictureEl = [...mutation.addedNodes].filter((node) => node.tagName === 'PICTURE');
+              const removedPictureEl = [...mutation.removedNodes].filter((node) => node.tagName === 'PICTURE');
+              if (addedPictureEl.length === 1 && removedPictureEl.length === 1) {
+                const oldImgEL = removedPictureEl[0].querySelector('img');
+                const newImgEl = addedPictureEl[0].querySelector('img');
+                if (oldImgEL && newImgEl) {
+                  moveInstrumentation(oldImgEL, newImgEl);
+                }
+              }
+            }
+            break;
+          case 'hero-deconstructed-image':
+            // handle image-cell picture replacements (optimized picture swap)
+            if (mutation.target.classList.contains('hero-deconstructed-media')) {
               const addedPictureEl = [...mutation.addedNodes].filter((node) => node.tagName === 'PICTURE');
               const removedPictureEl = [...mutation.removedNodes].filter((node) => node.tagName === 'PICTURE');
               if (addedPictureEl.length === 1 && removedPictureEl.length === 1) {
