@@ -186,10 +186,11 @@
         "component": "richtext",
         "valueType": "string",
         "name": "text",
-        "label": "Supporting Text"
+        "label": "Supporting Text",
+        "value": ""
       },
       {
-        "component": "text",
+        "component": "aem-content",
         "valueType": "string",
         "name": "ctaUrl",
         "label": "CTA URL"
@@ -204,7 +205,6 @@
         "component": "multiselect",
         "name": "classes",
         "label": "Style",
-        "valueType": "string",
         "options": [
           {
             "name": "Light",
@@ -243,7 +243,7 @@
         "label": "Heading"
       },
       {
-        "component": "text",
+        "component": "aem-content",
         "valueType": "string",
         "name": "linkUrl",
         "label": "Link URL"

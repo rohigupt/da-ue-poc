@@ -11,30 +11,12 @@
           "rows": 1,
           "columns": 2,
           "fields": [
-            {
-              "name": "image",
-              "selector": "div:nth-child(1)>picture>img[src]"
-            },
-            {
-              "name": "imageAlt",
-              "selector": "div:nth-child(1)>picture>img[alt]"
-            },
-            {
-              "name": "heading",
-              "selector": "div:nth-child(2) h1"
-            },
-            {
-              "name": "text",
-              "selector": "div:nth-child(2) p:first-of-type"
-            },
-            {
-              "name": "ctaUrl",
-              "selector": "div:nth-child(2) a[href]"
-            },
-            {
-              "name": "ctaUrlText",
-              "selector": "div:nth-child(2) a"
-            }
+            { "name": "image", "selector": "div:nth-child(1)>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>picture>img[alt]" },
+            { "name": "heading", "selector": "div:nth-child(2) h1" },
+            { "name": "text", "selector": "div:nth-child(2) p:not(:last-child)" },
+            { "name": "ctaUrl", "selector": "div:nth-child(2) p:last-child a[href]" },
+            { "name": "ctaUrlText", "selector": "div:nth-child(2) p:last-child a" }
           ]
         }
       }
@@ -49,30 +31,12 @@
           "rows": 1,
           "columns": 2,
           "fields": [
-            {
-              "name": "image",
-              "selector": "div:nth-child(1)>picture>img[src]"
-            },
-            {
-              "name": "imageAlt",
-              "selector": "div:nth-child(1)>picture>img[alt]"
-            },
-            {
-              "name": "badge",
-              "selector": "div:nth-child(2) strong"
-            },
-            {
-              "name": "heading",
-              "selector": "div:nth-child(2) h3"
-            },
-            {
-              "name": "linkUrl",
-              "selector": "div:nth-child(2) a[href]"
-            },
-            {
-              "name": "linkUrlText",
-              "selector": "div:nth-child(2) a"
-            }
+            { "name": "image", "selector": "div:nth-child(1)>picture>img[src]" },
+            { "name": "imageAlt", "selector": "div:nth-child(1)>picture>img[alt]" },
+            { "name": "badge", "selector": "div:nth-child(2) p:first-child strong" },
+            { "name": "heading", "selector": "div:nth-child(2) h3" },
+            { "name": "linkUrl", "selector": "div:nth-child(2) p:last-child a[href]" },
+            { "name": "linkUrlText", "selector": "div:nth-child(2) p:last-child a" }
           ]
         }
       }
@@ -105,10 +69,11 @@
           "component": "richtext",
           "valueType": "string",
           "name": "text",
-          "label": "Supporting Text"
+          "label": "Supporting Text",
+          "value": ""
         },
         {
-          "component": "text",
+          "component": "aem-content",
           "valueType": "string",
           "name": "ctaUrl",
           "label": "CTA URL"
@@ -123,12 +88,8 @@
           "component": "multiselect",
           "name": "classes",
           "label": "Style",
-          "valueType": "string",
           "options": [
-            {
-              "name": "Light",
-              "value": "light"
-            }
+            { "name": "Light", "value": "light" }
           ]
         }
       ]
@@ -162,7 +123,7 @@
           "label": "Heading"
         },
         {
-          "component": "text",
+          "component": "aem-content",
           "valueType": "string",
           "name": "linkUrl",
           "label": "Link URL"
@@ -179,9 +140,7 @@
   "filters": [
     {
       "id": "hero-deconstructed",
-      "components": [
-        "hero-deconstructed-card"
-      ]
+      "components": ["hero-deconstructed-card"]
     }
   ]
 }

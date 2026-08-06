@@ -251,15 +251,15 @@
                 },
                 {
                   "name": "text",
-                  "selector": "div:nth-child(2) p:first-of-type"
+                  "selector": "div:nth-child(2) p:not(:last-child)"
                 },
                 {
                   "name": "ctaUrl",
-                  "selector": "div:nth-child(2) a[href]"
+                  "selector": "div:nth-child(2) p:last-child a[href]"
                 },
                 {
                   "name": "ctaUrlText",
-                  "selector": "div:nth-child(2) a"
+                  "selector": "div:nth-child(2) p:last-child a"
                 }
               ]
             }
@@ -285,7 +285,7 @@
                 },
                 {
                   "name": "badge",
-                  "selector": "div:nth-child(2) strong"
+                  "selector": "div:nth-child(2) p:first-child strong"
                 },
                 {
                   "name": "heading",
@@ -293,11 +293,11 @@
                 },
                 {
                   "name": "linkUrl",
-                  "selector": "div:nth-child(2) a[href]"
+                  "selector": "div:nth-child(2) p:last-child a[href]"
                 },
                 {
                   "name": "linkUrlText",
-                  "selector": "div:nth-child(2) a"
+                  "selector": "div:nth-child(2) p:last-child a"
                 }
               ]
             }
