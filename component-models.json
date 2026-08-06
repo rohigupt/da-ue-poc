@@ -173,6 +173,12 @@
       {
         "component": "text",
         "valueType": "string",
+        "name": "imageAlt",
+        "label": "Hero Image Alt"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
         "name": "heading",
         "label": "Heading"
       },
@@ -183,10 +189,16 @@
         "label": "Supporting Text"
       },
       {
-        "component": "aem-content",
+        "component": "text",
         "valueType": "string",
-        "name": "cta",
-        "label": "CTA Link"
+        "name": "ctaUrl",
+        "label": "CTA URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "ctaUrlText",
+        "label": "CTA Text"
       },
       {
         "component": "multiselect",
@@ -215,6 +227,12 @@
       {
         "component": "text",
         "valueType": "string",
+        "name": "imageAlt",
+        "label": "Card Image Alt"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
         "name": "badge",
         "label": "Badge Label"
       },
@@ -225,10 +243,16 @@
         "label": "Heading"
       },
       {
-        "component": "aem-content",
+        "component": "text",
         "valueType": "string",
-        "name": "link",
-        "label": "Link"
+        "name": "linkUrl",
+        "label": "Link URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkUrlText",
+        "label": "Link Text"
       }
     ]
   },

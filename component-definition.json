@@ -239,7 +239,11 @@
               "fields": [
                 {
                   "name": "image",
-                  "selector": "div:nth-child(1) img"
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
                 },
                 {
                   "name": "heading",
@@ -250,7 +254,11 @@
                   "selector": "div:nth-child(2) p:first-of-type"
                 },
                 {
-                  "name": "cta",
+                  "name": "ctaUrl",
+                  "selector": "div:nth-child(2) a[href]"
+                },
+                {
+                  "name": "ctaUrlText",
                   "selector": "div:nth-child(2) a"
                 }
               ]
@@ -269,7 +277,11 @@
               "fields": [
                 {
                   "name": "image",
-                  "selector": "div:nth-child(1) img"
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
                 },
                 {
                   "name": "badge",
@@ -280,7 +292,11 @@
                   "selector": "div:nth-child(2) h3"
                 },
                 {
-                  "name": "link",
+                  "name": "linkUrl",
+                  "selector": "div:nth-child(2) a[href]"
+                },
+                {
+                  "name": "linkUrlText",
                   "selector": "div:nth-child(2) a"
                 }
               ]
