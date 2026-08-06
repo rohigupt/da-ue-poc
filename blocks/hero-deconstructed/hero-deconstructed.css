@@ -5,24 +5,31 @@
   --hero-deconstructed-button-text: #2662fc;
   --hero-deconstructed-subtext: #bad1f5;
   --hero-deconstructed-radius: 4px;
-  --hero-deconstructed-gap: 16px;
 }
 
+/*
+ * Responsive per Figma "Deconstructed hero" spec (node 2189:31642):
+ *   Mobile  (<768): stacked single column, hero 380h, 24 padding, 8 gap
+ *   Tablet  (>=768): stacked single column, hero 480h, 48 padding, 16 gap
+ *   Desktop (>=900): hero left + 2 stacked cards right, fixed 530h, 64 padding
+ */
+
+/* ---- base: mobile-first, single stacked column ---- */
 .hero-deconstructed {
   display: grid;
-  gap: var(--hero-deconstructed-gap);
   grid-template-columns: 1fr;
+  gap: 8px;
 }
 
-/* Main hero row */
+/* Main hero */
 .hero-deconstructed .hero-deconstructed-main {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 32px;
-  min-height: 340px;
-  padding: 40px 24px;
+  gap: 24px;
+  min-height: 380px;
+  padding: 24px;
   border-radius: var(--hero-deconstructed-radius);
   background-color: var(--hero-deconstructed-navy);
   overflow: hidden;
@@ -35,7 +42,7 @@
   z-index: 0;
 }
 
-.hero-deconstructed .hero-deconstructed-main .hero-deconstructed-media p {
+.hero-deconstructed .hero-deconstructed-media p {
   margin: 0;
   width: 100%;
   height: 100%;
@@ -67,8 +74,8 @@
 .hero-deconstructed .hero-deconstructed-main .hero-deconstructed-content h1 {
   color: var(--background-color);
   margin: 0;
-  font-size: 56px;
-  line-height: 64px;
+  font-size: 36px;
+  line-height: 42px;
   font-weight: 350;
 }
 
@@ -86,7 +93,7 @@
 .hero-deconstructed .hero-deconstructed-main .hero-deconstructed-content a:any-link {
   display: inline-flex;
   align-items: center;
-  margin-top: 32px;
+  margin-top: 24px;
   padding: 16px 24px;
   color: var(--hero-deconstructed-button-text);
   background: var(--background-color);
@@ -99,13 +106,12 @@
   text-decoration: none;
 }
 
-/* Feature rows (whitepaper / article) */
+/* Feature cards (whitepaper / article) */
 .hero-deconstructed .hero-deconstructed-feature {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--hero-deconstructed-gap);
-  min-height: 180px;
+  gap: 16px;
   padding: 24px;
   border-radius: var(--hero-deconstructed-radius);
   overflow: hidden;
@@ -121,7 +127,8 @@
 /* Image-background card (article) — content bottom-aligned */
 .hero-deconstructed .hero-deconstructed-feature-media {
   justify-content: flex-end;
-  min-height: 260px;
+  min-height: 220px;
+  background-color: var(--hero-deconstructed-navy);
 }
 
 .hero-deconstructed .hero-deconstructed-feature-media .hero-deconstructed-media {
@@ -199,25 +206,55 @@
   display: none;
 }
 
+/* ---- tablet (>=768): still stacked, larger hero ---- */
+@media (width >= 768px) {
+  .hero-deconstructed {
+    gap: 16px;
+  }
+
+  .hero-deconstructed .hero-deconstructed-main {
+    min-height: 480px;
+    padding: 48px;
+  }
+
+  .hero-deconstructed .hero-deconstructed-main .hero-deconstructed-content h1 {
+    font-size: 48px;
+    line-height: 55px;
+  }
+}
+
+/* ---- desktop (>=900): hero left + 2 stacked cards right, fixed 530h ---- */
 @media (width >= 900px) {
   .hero-deconstructed {
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+    height: 530px;
   }
 
   .hero-deconstructed .hero-deconstructed-main {
     grid-row: 1 / 3;
     grid-column: 1;
-    min-height: 480px;
+    min-height: 0;
+    height: 100%;
+    padding: 64px;
+  }
+
+  .hero-deconstructed .hero-deconstructed-main .hero-deconstructed-content h1 {
+    font-size: 56px;
+    line-height: 64px;
+  }
+
+  .hero-deconstructed .hero-deconstructed-feature {
+    grid-column: 2;
+    min-height: 0;
+    height: 100%;
   }
 
   .hero-deconstructed .hero-deconstructed-feature-solid {
     grid-row: 1;
-    grid-column: 2;
   }
 
   .hero-deconstructed .hero-deconstructed-feature-media {
     grid-row: 2;
-    grid-column: 2;
   }
 }
