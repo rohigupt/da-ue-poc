@@ -227,6 +227,83 @@
           }
         },
         {
+          "title": "Hero Deconstructed",
+          "id": "hero-deconstructed",
+          "model": "hero-deconstructed",
+          "filter": "hero-deconstructed",
+          "plugins": {
+            "da": {
+              "name": "hero-deconstructed",
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "heading",
+                  "selector": "div:nth-child(2) h1"
+                },
+                {
+                  "name": "text",
+                  "selector": "div:nth-child(2) p:not(:last-child)"
+                },
+                {
+                  "name": "ctaUrl",
+                  "selector": "div:nth-child(2) p:last-child a[href]"
+                },
+                {
+                  "name": "ctaUrlText",
+                  "selector": "div:nth-child(2) p:last-child a"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "title": "Hero Deconstructed Card",
+          "id": "hero-deconstructed-card",
+          "model": "hero-deconstructed-card",
+          "plugins": {
+            "da": {
+              "name": "hero-deconstructed-card",
+              "rows": 1,
+              "columns": 2,
+              "fields": [
+                {
+                  "name": "image",
+                  "selector": "div:nth-child(1)>picture>img[src]"
+                },
+                {
+                  "name": "imageAlt",
+                  "selector": "div:nth-child(1)>picture>img[alt]"
+                },
+                {
+                  "name": "badge",
+                  "selector": "div:nth-child(2) p:first-child strong"
+                },
+                {
+                  "name": "heading",
+                  "selector": "div:nth-child(2) h3"
+                },
+                {
+                  "name": "linkUrl",
+                  "selector": "div:nth-child(2) p:last-child a[href]"
+                },
+                {
+                  "name": "linkUrlText",
+                  "selector": "div:nth-child(2) p:last-child a"
+                }
+              ]
+            }
+          }
+        },
+        {
           "title": "Hero",
           "id": "hero",
           "model": "hero",

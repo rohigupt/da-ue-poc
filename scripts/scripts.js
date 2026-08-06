@@ -17,6 +17,12 @@ import {
   toCamelCase,
 } from './aem.js';
 
+const { searchParams: nxSearchParams, origin: nxOrigin } = new URL(window.location.href);
+const nxBranch = nxSearchParams.get('nx') || 'main';
+export const NX_ORIGIN = nxBranch === 'local' || nxOrigin.includes('localhost')
+  ? 'http://localhost:6456/nx'
+  : 'https://da.live/nx';
+
 /**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
@@ -24,6 +30,11 @@ import {
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('picture');
+  // Don't auto-block if the h1/picture already belong to the hero-deconstructed
+  // block (it owns its own hero image + heading). Checked by block-name class,
+  // since the generic `.block` class isn't added until decorateBlocks() runs later.
+  if (h1 && h1.closest('.hero-deconstructed')) return;
+  if (picture && picture.closest('.hero-deconstructed')) return;
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
@@ -227,6 +238,5 @@ loadPage();
   if (lp) import('https://da.live/scripts/dapreview.js').then((mod) => mod.default(loadPage));
 
   const exp = searchParams.get('daexperiment');
-  // eslint-disable-next-line import/no-unresolved
-  if (exp) import('https://da.live/nx/public/plugins/exp/exp.js');
+  if (exp) import(`${NX_ORIGIN}/public/plugins/exp/exp.js`);
 }());

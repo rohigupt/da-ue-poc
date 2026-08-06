@@ -16,6 +16,7 @@
       "fragment",
       "form",
       "hero",
+      "hero-deconstructed",
       "image",
       "quote",
       "search",
@@ -59,6 +60,12 @@
     "components": [
       "text",
       "image"
+    ]
+  },
+  {
+    "id": "hero-deconstructed",
+    "components": [
+      "hero-deconstructed-card"
     ]
   },
   {
